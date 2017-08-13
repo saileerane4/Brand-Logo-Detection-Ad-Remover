@@ -9,9 +9,9 @@ Requirements:
 Maintain the folders dataset and dataset2 containing the brand logos and the corresponding ads of the logos
 
 Decription:
-Part 1: Run Player.java VIDEOPATH AUDIOPATH
-Part 2: Run MyPart2.java VIDEOPATH AUDIOPATH VIDEOOUT AUDIOOUT
-Part 3: Run MyPart3.java VIDEOPATH AUDIOPATH VIDEOOUT AUDIOOUT 1
+•	Part 1: Run Player.java VIDEOPATH AUDIOPATH
+•	Part 2: Run MyPart2.java VIDEOPATH AUDIOPATH VIDEOOUT AUDIOOUT
+•	Part 3: Run MyPart3.java VIDEOPATH AUDIOPATH VIDEOOUT AUDIOOUT 1
 
 Part 1: Part one was to take a video file of RGB format (each byte indicated one color channel for one pixel for one frame) and a WAV audio file (normal WAV file following RIFF WAV standards) and to play them together in synch. This was done by having the audio play normally using Java's default audio libraries and speeding up or slowing down the video very slightly to align with the audio's current position. The speedups and slowdowns are essentially unnoticeable.
 
