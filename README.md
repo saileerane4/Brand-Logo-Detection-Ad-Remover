@@ -1,9 +1,5 @@
 # Brand-Logo-Detection-Ad-Remover
-CSCI 576 Final Project
-Sailee Rane
-
-Goal:
-To remove the ad's present in the video file and detect the brand logos in the subsequent frames.
+Synch the audio(.wav file) and the video(.rgb file). Remove the ad's present in the audio file and detect the brand logos present in the buffered frames.
 
 Requirements:
 Maintain the folders dataset and dataset2 containing the brand logos and the corresponding ads of the logos
