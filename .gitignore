@@ -1,0 +1,7 @@
+bin/*
+dataset/Audio/*
+dataset/Videos/*
+dataset2/Videos/*
+.classpath
+.project
+.settings/*
