@@ -23,9 +23,7 @@ import javax.swing.Timer;
 
 public class VideoPlayer extends JPanel implements ActionListener {
 
-	/**
-	 * Serial ID to make Eclipse happy
-	 */
+	
 	private static final long serialVersionUID = -8426080774234368297L;
 	
 	//Width and Height of frame
@@ -89,7 +87,7 @@ public class VideoPlayer extends JPanel implements ActionListener {
 		pause = new JButton("Pause");
 		stop = new JButton("Stop");
 		
-		//Layout stuff to make it look pretty
+		//add layout components for better display
 		GridBagConstraints layout = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		
@@ -110,7 +108,7 @@ public class VideoPlayer extends JPanel implements ActionListener {
 		layout.gridx = 2;
 		this.add(stop, layout);
 
-		//ActionListeners to make buttons do things
+		//ActionListeners to add functionality to the buttons
 		play.addActionListener(this);
 		pause.addActionListener(this);
 		stop.addActionListener(this);
@@ -179,9 +177,9 @@ public class VideoPlayer extends JPanel implements ActionListener {
 				e.printStackTrace();
 			}
 		}
-		//If this is a result of the timer firing
+		
 		else {
-			//Don't bother doing anything if audio is stopped
+			
 			if (!clip.isActive()) {
 				return;
 			}
@@ -205,6 +203,7 @@ public class VideoPlayer extends JPanel implements ActionListener {
 					}
 
 					//Update frame
+					//logo detection
 					int ind = 0;
 					for(int y = 0; y < HEIGHT; y++){
 						for(int x = 0; x < WIDTH; x++){
