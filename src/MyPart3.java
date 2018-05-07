@@ -158,7 +158,6 @@ public class MyPart3 {
 		return img;
 	}
 	/**
-	 * Special processing for the McDonalds picture because it's a bad rgb image
 	 * @param filename
 	 * @return
 	 * @throws IOException
@@ -328,7 +327,6 @@ public class MyPart3 {
 			//For checking McDonalds
 			double countMcdY[] = new double[5];
 			int countMcdR[] = new int[5];
-			//tbh I probably don't need ind and can probably use (WIDTH*y + x)
 			int ind = 0;
 			for(int y = 0; y < HEIGHT; y++){
 				for(int x = 0; x < WIDTH; x++){
