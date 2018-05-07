@@ -18,10 +18,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class MyPart2 {
 	
-	/**
-	 * Category of a shot. I'd use a bit array if that wasn't so silly
-	 * @author Tobias
-	 */
+	
 	public static enum Category {
 		UNKNOWN,
 		SPAM,
@@ -29,10 +26,7 @@ public class MyPart2 {
 		EITHER;
 	}
 	
-	/**
-	 * Enum to describe which logos are present and what to replace ads with
-	 * @author Tobias
-	 */
+	
 	public static enum Logo {
 		STARBUCKS (0),
 		SUBWAY (1),
@@ -48,7 +42,6 @@ public class MyPart2 {
 	
 	/**
 	 * A single shot. Contains timestamps, category, and other info
-	 * @author Tobias
 	 */
 	public static class Shot {
 		public int start, end;
@@ -120,7 +113,7 @@ public class MyPart2 {
 		//Count frames each time and go until end of file (numRead == -1)
 		//Note: I start on frame 1, not frame 0
 		for (frame = 1; numRead != -1; ++frame) {
-			//tbh idk why it's done this way, but I guess it's to ensure we read to the full buffer
+			
 			int offset = 0;
 			while (offset < bytes.length && (numRead=videoStream.read(bytes, offset, bytes.length-offset)) >= 0) {
 				offset += numRead;
@@ -137,7 +130,7 @@ public class MyPart2 {
 			int[] GSpace = new int[256];
 			int[] BSpace = new int[256];
 
-			//tbh I probably don't need ind and can probably use (WIDTH*y + x)
+			
 			int ind = 0;
 			for(int y = 0; y < HEIGHT; y++){
 				for(int x = 0; x < WIDTH; x++){
@@ -201,8 +194,8 @@ public class MyPart2 {
 			double difG = Math.abs(prevEntG - sumG);
 			double difB = Math.abs(prevEntB - sumB);
 			
-			//I have this boolean here to ensure values don't get added multiple times
-			//because I have embedded if statements that make else ifs difficult
+			//boolean to ensure values don't get added multiple times
+			
 			boolean checked = true;
 			
 			//If the change in entropy is above a certain small threshold
@@ -314,8 +307,7 @@ public class MyPart2 {
 		int sign = 1;
 		int signCount = 0;
 		for (int curFrame = 0; (read = stream.read(buffer)) > 0; ++curFrame) {
-			//If we don't read a full frame for some reason. I hope this doesn't happen because it's hard to test
-			//if my logic here is right
+			
 			if (read != framesize) {
 				offset = read;
 				while (offset < framesize && (read = stream.read(buffer, offset, framesize - offset)) >= 0) {
@@ -504,9 +496,8 @@ public class MyPart2 {
 	public static void insertAdVideo(Logo logo, FileOutputStream vid) throws IOException {
 		InputStream videoStream = new FileInputStream(adVideos[logo.key]);
 		
-		//Some initial data for the for loop
+		
 		int numRead = 0;
-		//I just don't want to allocate more space each time
 		byte bytes[] = new byte[3*WIDTH*HEIGHT];
 		
 		//Go until end of file (numRead == -1)
@@ -519,7 +510,7 @@ public class MyPart2 {
 			vid.write(bytes);
 		}
 		
-		//Close the streams like a responsible adult
+		
 		videoStream.close();
 	}
 	
@@ -572,7 +563,7 @@ public class MyPart2 {
 		int[][][] logos = MyPart3.readLogos();
 		MyPart3.analyzeVideo(videopath, logos, shots);
 		
-		//Decide on logos for shots
+		//Detect logos for shots
 		for (int i = 0; i < shots.length; ++i) {
 			if (shots[i].logos[Logo.SUBWAY.key] != 0
 					&& shots[i].logos[Logo.SUBWAY.key] > shots[i].logos[Logo.STARBUCKS.key]
@@ -621,7 +612,7 @@ public class MyPart2 {
 			}
 		}
 		
-		//Well uh, we got nothing. Assign randomly and hope for the best.
+		//default value if above cases fail to detect
 		for (int i = 0; i < shots.length; ++i) {
 			if (shots[i].cat == Category.SPAM) {
 				if ((i == 0 || shots[i-1].cat != Category.SPAM) && shots[i].logo == Logo.NONE) {
@@ -678,8 +669,7 @@ public class MyPart2 {
 				neighbors.add(shots[i+1].cat);
 			}
 			
-			//Decide eithers based on neighbors. Sometimes, we might mislabel ham as spam, so check that
-			//We should never mislabel spam as ham.
+			
 			if (shots[i].cat == Category.EITHER || shots[i].cat == Category.SPAM) {
 				//If both are ham
 				if (neighbors.contains(Category.HAM) && neighbors.size() == 1) {
@@ -720,8 +710,7 @@ public class MyPart2 {
 			}
 		}
 		
-		//Pass 4: Just choose closest neighbor, prioritizing after arbitrarily
-		//Really desperation mode here, probably will never reach
+		
 		for (int i = 0; i < shots.length; ++i) {
 			if (shots[i].cat == Category.EITHER) {
 				for (int j = 1; j <= shots.length; ++j) {
